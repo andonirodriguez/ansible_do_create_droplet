@@ -1,0 +1,19 @@
+# DigitalOcean Info Playbook
+---
+- name: DigitalOcean
+  hosts: localhost
+  connection: local
+  gather_facts: False
+
+  tasks:
+
+  - name: Include variables
+    include_vars: group_vars/droplet
+
+  - name: Info ssh
+    digital_ocean:
+      state: present
+      command: ssh
+      name: <name>
+      ssh_pub_key: 'ssh-rsa ...'
+      api_token: "{{ digital_ocean_api_token }}"
